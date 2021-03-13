@@ -1,28 +1,42 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div>
+    <el-row :gutter="12">
+      <el-col :span="12">
+        <Tinymce v-model="content1" id="t1" :height="300"></Tinymce>
+      </el-col>
+      <el-col :span="12">
+        <Tinymce v-model="content2" id="t2" :height="300"></Tinymce>
+      </el-col>
+    </el-row>
+    <el-row :gutter="12">
+      <el-col :span="12">
+        <Tinymce v-model="content3" id="t3" :height="300"></Tinymce>
+      </el-col>
+      <el-col :span="12">
+        <Tinymce v-model="content4" id="t4" :height="300"></Tinymce>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import Tinymce from "./components/Tinymce";
 export default {
-  name: 'App',
+  name: "App",
+  data() {
+    return {
+      content1: "cyf1",
+      content2: "cyf2",
+      content3: "cyf3",
+      content4: "cyf4",
+    };
+  },
+  methods: {},
   components: {
-    HelloWorld
-  }
-}
+    Tinymce,
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>
