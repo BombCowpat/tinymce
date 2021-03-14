@@ -77,34 +77,34 @@ export default {
             window.tinymce.get(this.tinymceId).setContent(val);
         // 此处修改 editFlag 会在编辑一次后，外部更新绑定的值在第一次修改时无法更新内容，第二次才可以更新，无法分析原因 
         }
-        this.editFlag = false 
+        // this.editFlag = false 
     }
   },
   methods: {
     /** 动态加载 script 标签，下载编辑器
      * @param src CDN 地址
      */
-    dynamicLoadScript(src) {
-        const hasScript = Boolean(document.getElementById('vue-cyf-xxxxx-aaaa'))
-        // console.log(hasScript);
-        if(!hasScript) {
-            const script = document.createElement("script");
-            script.src = src;
-            script.id = 'vue-cyf-xxxxx-aaaa'
-            document.body.appendChild(script);
-            script.onload = () => {
-                // console.log(window.tinymce);
-                this.initTinymce();
-            },
-            script.onerror = function () {
-                console.log("load tinymce failed");
-            };
-        } else {
-            // 此时虽已创建script标签，但脚本并未下载完成
-            // console.log(window.tinymce);
-            // this.initTinymce()
-        }
-    },
+    // dynamicLoadScript(src) {
+    //     const hasScript = Boolean(document.getElementById('vue-cyf-xxxxx-aaaa'))
+    //     // console.log(hasScript);
+    //     if(!hasScript) {
+    //         const script = document.createElement("script");
+    //         script.src = src;
+    //         script.id = 'vue-cyf-xxxxx-aaaa'
+    //         document.body.appendChild(script);
+    //         script.onload = () => {
+    //             // console.log(window.tinymce);
+    //             this.initTinymce();
+    //         },
+    //         script.onerror = function () {
+    //             console.log("load tinymce failed");
+    //         };
+    //     } else {
+    //         // 此时虽已创建script标签，但脚本并未下载完成
+    //         // console.log(window.tinymce);
+    //         // this.initTinymce()
+    //     }
+    // },
     /** 初始化编辑器 */
     initTinymce() {
     //   console.log(window.tinymce)
@@ -128,9 +128,9 @@ export default {
               this.$emit("input", editor.getContent())
               // input 回调 watch回调 .... setTimeout回调
               // 直接修改无效 $emit 是异步执行的，外部内容修改时已经为editFlag已经修改为 false 还是会重置光标，所以需要在回调队列最后紧跟一个回调去修改状态为false
-            //   setTimeout(() => {
-            //    this.editFlag = false    
-            //   });
+              setTimeout(() => {
+               this.editFlag = false    
+              });
             }
           );
         },
